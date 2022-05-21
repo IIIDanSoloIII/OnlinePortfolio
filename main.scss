@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+.header {
+    height: 85vh;
+    // background-image: linear-gradient(to right bottom, rgba(rgb(0, 0, 0), .5), rgba(rgb(0, 0, 0), .1));
+    // opacity: .9;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+    &__text {
+        text-align: center;
+        font-size: 3rem;
+        padding: 2rem;
+        color: #fff;
+    }
+
+
+    &__bg-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        overflow: hidden;
+        background-size: cover;
+    
+    
+        &__content {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+    
+        }
+    }
+}
+
+.content {
+    // color: #fff;
+    padding: 5rem;
+    margin-top: 10rem;
+}
