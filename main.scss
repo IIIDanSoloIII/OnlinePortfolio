@@ -6,21 +6,38 @@
 }
 
 body {
-    background-color: antiquewhite;
+    // background-color: antiquewhite;
+    background-color: rgb(27, 27, 27);
+    color: #fff;
 }
+
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr repeat(3, 300px) 1fr;
+    grid-template-columns: 200px repeat(3, 300px) 1fr;
+}
+
+
 
 .header {
     height: 85vh;
     // background-image: linear-gradient(to right bottom, rgba(rgb(0, 0, 0), .5), rgba(rgb(0, 0, 0), .1));
     // opacity: .9;
     position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%);
+    
+
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
 
     &__text {
         text-align: center;
         font-size: 3rem;
         padding: 2rem;
+        margin-top: 8rem;
         color: #fff;
+        font-family: 'Times New Roman', Times, serif;
     }
 
 
@@ -33,6 +50,7 @@ body {
         z-index: -1;
         overflow: hidden;
         background-size: cover;
+        opacity: .5;
     
     
         &__content {
@@ -42,6 +60,157 @@ body {
     
         }
     }
+
+    &__btn {
+        grid-row: 1 / 2;
+        grid-column: 3 / 5;
+        background-image: linear-gradient(to right, rgb(69, 0, 84), rgb(84, 1, 172));
+        color: #fff;
+        padding: 1rem 3rem;
+        border-radius: 100px;
+        align-self: end;
+        justify-self: center;
+        margin-bottom: 10rem;
+        opacity: .7;
+        cursor: pointer;
+        position: relative;
+        font-family: sans-serif;
+        text-transform: uppercase;
+
+        & > * {
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            transition: all .4s;
+        }
+
+        &-visible {
+            // padding: 1rem 3rem;
+        }
+        &-invisible {
+            position: absolute;
+            padding: 1rem 0;
+            left: 0;
+            top: -30%;
+            text-align: center;
+            opacity: 0;
+        }
+        
+
+        &:hover {
+            background-image: linear-gradient(to left, rgb(69, 0, 84), rgb(84, 1, 172));
+            box-shadow: 0 0 1rem rgba(rgb(255, 255, 255), .7);
+
+            transform: translateY(-.1rem);
+        }
+        &:hover &-visible {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        &:hover &-invisible {
+            top: 0;
+            opacity: 1;
+        }
+
+        &:active {
+            transform: translateY(.01rem);
+        }
+
+
+
+        &::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 10rem;
+            background-image: linear-gradient(to left, rgb(69, 0, 84), rgb(84, 1, 172));
+            
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all .4s ease-in-out;
+        }
+
+        &:hover::after {
+            transform: scaleX(2.5) scaleY(2);
+            opacity: 0;
+        }
+    }
+
+}
+
+
+
+
+
+.sidebar {
+    background-image: linear-gradient(to right, rgba(black, 1), rgba(rgb(25, 25, 25), .3));
+    // background-color: rgb(28, 28, 28);
+    // height: 100vh;
+    grid-row: 1 / -1;
+    grid-column: 1 / 2;
+    z-index: 10;
+
+    transform: translateX();
+    // box-shadow: 0 0 2rem rgba(purple, .2);
+}
+
+.side-nav {
+    color: #fff;
+    position: fixed;
+    list-style: none;
+    margin-top: 1rem;
+
+
+    &__item {
+        padding: 1.5rem 5rem;
+        margin-bottom: .2rem;
+        position: relative;
+        // z-index: 15;
+
+        &:hover {
+            background-color: rgb(50, 50, 50);
+        }
+
+    }
+
+    &__item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 5px;
+        background-color: purple;
+        transform: scaleY(0);
+        transform-origin: center;
+        transition: transform .2s,
+                    width .4s cubic-bezier(1,0,0,1) .2s,
+                    background-color .1s;
+    }
+
+    &__item:hover::before,
+    &__item--active::before {
+        transform: scaleY(1);
+        width: 100%;
+    }
+
+
+
+    &__link,
+    &__link:link,
+    &__link:visited {
+        text-decoration: none;
+        color: #fff;
+        z-index: 10;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+
 }
 
 .content {
@@ -49,3 +218,11 @@ body {
     padding: 5rem;
     margin-top: 10rem;
 }
+
+.bio {
+    grid-column: 3 / 5;
+}
+
+
+//////////// ANIMATIONS /////////////////// 
+
