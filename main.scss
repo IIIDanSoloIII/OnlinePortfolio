@@ -31,6 +31,7 @@ body {
     grid-row: 1 / 2;
     grid-column: 1 / -1;
 
+
     &__text {
         text-align: center;
         font-size: 3rem;
@@ -76,6 +77,7 @@ body {
         position: relative;
         font-family: sans-serif;
         text-transform: uppercase;
+
 
         & > * {
             display: inline-block;
@@ -147,14 +149,14 @@ body {
 
 .sidebar {
     background-image: linear-gradient(to right, rgba(black, 1), rgba(rgb(25, 25, 25), .3));
-    // background-color: rgb(28, 28, 28);
-    // height: 100vh;
     grid-row: 1 / -1;
     grid-column: 1 / 2;
     z-index: 10;
 
-    transform: translateX();
-    // box-shadow: 0 0 2rem rgba(purple, .2);
+    &--animated {
+        animation: moveInRight .2s ease .75s;
+        animation-fill-mode: backwards;
+    }
 }
 
 .side-nav {
@@ -171,31 +173,31 @@ body {
         // z-index: 15;
 
         &:hover {
-            background-color: rgb(50, 50, 50);
+            // background-color: rgb(50, 50, 50);
         }
 
     }
 
-    // &__item::before {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     height: 100%;
-    //     width: 5px;
-    //     background-color: purple;
-    //     transform: scaleY(0);
-    //     transform-origin: center;
-    //     transition: transform .2s,
-    //                 width .4s cubic-bezier(1,0,0,1) .2s,
-    //                 background-color .1s;
-    // }
+    &__item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 5px;
+        // background-color: purple;
+       background-image: linear-gradient(to left, rgba(rgb(72, 0, 72), .3), rgba(rgb(159, 0, 159), 1));
+        transform: scaleY(0);
+        transform-origin: center;
+        transition: transform .2s,
+                    width .4s cubic-bezier(1,0,0,1) .2s,
+                    background-color .1s;
+    }
 
-    // &__item:hover::before,
-    // &__item--active::before {
-    //     transform: scaleY(1);
-    //     width: 100%;
-    // }
+    &__item:hover::before {
+        transform: scaleY(1);
+        width: 100%;
+    }
 
 
 
@@ -226,3 +228,14 @@ body {
 
 //////////// ANIMATIONS /////////////////// 
 
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
